@@ -2,7 +2,7 @@ Each frame represents a month and the diameter of the points are proportional to
 
 For comparison:
 
-[October 2001] (https://i.imgur.com/IgVlKuh.png) and [October 2018](https://i.imgur.com/eiHWKqz.png)
+[October 2001](https://i.imgur.com/IgVlKuh.png) and [October 2018](https://i.imgur.com/eiHWKqz.png)
 
 ---
 **Some takeaways:**

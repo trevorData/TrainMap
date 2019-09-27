@@ -79,7 +79,7 @@ df <- df[!(df$main %>% is.na),]
 df$total.size <- df$monthtotal/23000
 
 # Load Map Background from Google
-register_google('AIzaSyBHmaiuLVzGu-nqQERi3W2Jdr_wdIDdtKY')
+register_google(Sys.getenv('ggmap_pass'))
 
 mapImage <- get_map(location = c(lon = -87.68, lat = 41.9), #c(-88.0, 41.63, -87.4, 42.1),
                     color = "bw",
@@ -111,29 +111,7 @@ themes <- theme(axis.title = element_blank(),
                 legend.position = 'none'
                 ) 
 
-# Plot Map
-ggmap(mapImage) +
-  geom_point(data = df[df$month == 2 & df$year == 2003 & df$main != 'white',],
-             aes(x=lon, y=lat, size = total.size, color = main)) +
-  scale_color_manual(values = cols) +
-  scale_size_identity() +
-  coord_lims +
-  themes + 
-  annotate('text', x= ann_x, y = ann_y, size = ann_size, color = 'white', label = '2003', fontface = 2, hjust = 1, vjust = 1)
-
-ggsave('plottest.png', height = 7, width = 7)
-
-ggmap(mapImage) +
-  geom_point(data = df[df$month == 10 & df$year == 2014 & df$main != 'white',],
-             aes(x=lon, y=lat, size = total.size, color = main)) +
-  scale_color_manual(values = cols) +
-  scale_size_identity() +
-  coord_lims +
-  themes + 
-  annotate('text', x= ann_x, y = ann_y, size = ann_size, color = 'white', label = '2014', fontface = 2, hjust = 1, vjust = 1)
-
-ggsave('plottest2.png', height = 7, width = 7)
-
+# Plot Maps
 for (year in 2001:2018){
   for (month in 1:12) {
     

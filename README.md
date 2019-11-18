@@ -1,3 +1,8 @@
+
+# [Main Plot](https://i.imgur.com/14eO4ef.gifv)
+
+---
+
 Each frame represents a month and the diameter of the points are proportional to the monthly ridership at each train stop. 
 
 For comparison:

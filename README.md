@@ -1,6 +1,8 @@
 
 # [Main Plot](https://i.imgur.com/14eO4ef.gifv)
 
+### Visualizing Chicago's Monthly Train Ridership Over Time
+
 ---
 
 Each frame represents a month and the diameter of the points are proportional to the monthly ridership at each train stop. 

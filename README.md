@@ -14,7 +14,7 @@ For comparison:
 ---
 **Some takeaways:**
 
-* Overall ridership peaked in 2015 and has been declining, likely due to uber/lyft
+* Overall ridership peaked in 2015 and has been declining since then, likely due to the rise of uber/lyft
 
 * Clark/Lake and State/Lake have massive amounts of riders, especially these last few years
 
@@ -23,6 +23,7 @@ For comparison:
 * There was a brief closure of the southern part of the red line in 2013 due to construction
 
 ---
+
 **Sources:**
 
 Ridership data and train stop coordinates obtained from https://data.cityofchicago.org/

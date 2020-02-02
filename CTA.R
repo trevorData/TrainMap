@@ -78,10 +78,19 @@ df <- df[!(df$main %>% is.na),]
 # Set scale that will be used to plot point sizes
 df$total.size <- df$monthtotal/23000
 
-# Load Map Background from Google
-register_google(Sys.getenv('ggmap_pass'))
+# Create column for ridership with seasonality removed
+month.avgs <- df$monthtotal %>% aggregate(by=list(Category=df$month), FUN=mean)
+colnames(month.avgs)[1] <- "month"
+colnames(month.avgs)[2] <- "month.avg"
 
-mapImage <- get_map(location = c(lon = -87.68, lat = 41.9), #c(-88.0, 41.63, -87.4, 42.1),
+df <- df %>% merge(month.avgs)
+df$prop.size <- df$monthtotal/df$month.avg
+df$prop.size <- df$prop.size * 4.5
+
+# Load Map Background from Google
+register_google(Sys.getenv('google_maps_api'))
+
+mapImage <- get_map(location = c(lon = -87.68, lat = 41.9), 
                     color = "bw",
                     maptype = "toner-background",
                     source = 'stamen',
@@ -111,6 +120,13 @@ themes <- theme(axis.title = element_blank(),
                 legend.position = 'none'
                 ) 
 
+ggmap(mapImage) +
+  geom_point(data = df[df$month == 2 & df$year == 2003 & df$main != 'white',],
+             aes(x=lon, y=lat, size = total.size, color = main)) +
+  scale_color_manual(values = cols) +
+  scale_size_identity() +
+  coord_lims
+
 # Plot Maps
 for (year in 2001:2018){
   for (month in 1:12) {
@@ -124,7 +140,39 @@ for (year in 2001:2018){
       themes + 
       annotate('text', x= ann_x, y = ann_y, size = ann_size, color = 'white', label = toString(year), fontface = 2, hjust = 1, vjust = 1)
     
-    paste('CTA_plot', year, month, '.png', sep = '_') %>% ggsave(device = 'png', height = 7, width = 7)
+    paste('CTA_plot', year, month, '.png', sep = '_') %>% ggsave(device = 'png', height = 7, width = 7, dpi = 'screen')
+    
+  }
+}
+
+# Plot Maps with proportional sizes
+for (year in 2001:2018){
+  for (month in 1:12) {
+    
+    ggmap(mapImage) +
+      geom_point(data = df[df$month == month & df$year == year & df$main == 'yellow',],
+                 aes(x=lon, y=lat, size = prop.size, color = main)) +
+      geom_point(data = df[df$month == month & df$year == year & df$main == 'pink',],
+                 aes(x=lon, y=lat, size = prop.size, color = main)) +
+      geom_point(data = df[df$month == month & df$year == year & df$main == 'orange',],
+                 aes(x=lon, y=lat, size = prop.size, color = main)) +
+      geom_point(data = df[df$month == month & df$year == year & df$main == 'green',],
+                 aes(x=lon, y=lat, size = prop.size, color = main)) +
+      geom_point(data = df[df$month == month & df$year == year & df$main == 'purple',],
+                 aes(x=lon, y=lat, size = prop.size, color = main)) +
+      geom_point(data = df[df$month == month & df$year == year & df$main == 'brown',],
+                 aes(x=lon, y=lat, size = prop.size, color = main)) +
+      geom_point(data = df[df$month == month & df$year == year & df$main == 'blue',],
+                 aes(x=lon, y=lat, size = prop.size, color = main)) +
+      geom_point(data = df[df$month == month & df$year == year & df$main == 'red',],
+                 aes(x=lon, y=lat, size = prop.size, color = main)) +
+      scale_color_manual(values = cols) +
+      scale_size_identity() +
+      coord_lims +
+      themes + 
+      annotate('text', x= ann_x, y = ann_y, size = ann_size, color = 'white', label = toString(year), fontface = 2, hjust = 1, vjust = 1)
+    
+    paste('CTA_prop_plot', year, month, '.png', sep = '_') %>% ggsave(device = 'png', height = 7, width = 7, dpi = 'screen')
     
   }
 }

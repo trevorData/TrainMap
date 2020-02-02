@@ -24,6 +24,14 @@ For comparison:
 
 ---
 
+# [Non-Seasonal Plot](https://i.imgur.com/zTozqZZ.gifv)
+
+There is a seasonal component in the data as ridership declines in the winter when riders opt instead for cars or rideshares. To remove the visual effect of this seasonality I divided the total ridership by the monthly, so now each month has the same average ridership.
+
+We can see that certain stops still have some seasonality, likely due to their seasonality components being shaped different from the general seasonality of all the train stops. Some examples are O'Hare being more affected by the seasonality of air travel and the Brown Line stops being more affected by the seasonality of the Depaul school year.
+
+---
+
 **Sources:**
 
 Ridership data and train stop coordinates obtained from https://data.cityofchicago.org/

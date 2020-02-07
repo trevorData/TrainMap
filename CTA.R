@@ -176,3 +176,25 @@ for (year in 2001:2018){
     
   }
 }
+
+ggplot() +
+  geom_point(data = ((df$prop.size/4.5) %>% aggregate(by=list(Category=df$month_beginning), FUN=mean)), 
+             aes(x=Category, y=x), color='dodgerblue3', size = 2) + 
+  labs(title = 'Monthly CTA Train Ridership Over Time', 
+       y = 'Ridership as a Proportion to the Average for that Month') +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 11, vjust = 4),
+        plot.title = element_text(size = 25),
+        panel.background = element_rect(fill = 'white'), 
+        panel.grid = element_line(colour = 'gray90')
+        )
+
+'pointplot.png' %>% ggsave(device = 'png', height = 7.5, width = 12, dpi = 'screen')
+
+
+
+
+
+
+
+

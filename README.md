@@ -26,9 +26,15 @@ For comparison:
 
 # [Non-Seasonal Plot](https://i.imgur.com/zTozqZZ.gifv)
 
-There is a seasonal component in the data as ridership declines in the winter when riders opt instead for cars or rideshares. To remove the visual effect of this seasonality I divided the total ridership by the monthly, so now each month has the same average ridership.
+There is a seasonal component in the data as ridership declines in the winter when riders opt instead for cars or rideshares. To remove the visual effect of this seasonality I divided the total ridership by the monthly averages, so now each month has the same average ridership.
 
-We can see that certain stops still have some seasonality, likely due to their seasonality components being shaped different from the general seasonality of all the train stops. Some examples are O'Hare being more affected by the seasonality of air travel and the Brown Line stops being more affected by the seasonality of the Depaul school year.
+We can see that certain stops still have some seasonality, suchas O'Hare which is more affected by the seasonality of air travel and the Brown Line stops being more affected by the seasonality of the Depaul school year.
+
+---
+
+# [Point Plot](https://imgur.com/TRMwnsF.png)
+
+This plot shows the general trend of CTA ridership when you remove the effects of seasonality. Notice the decline around 2015, likely due to rideshare apps.
 
 ---
 
